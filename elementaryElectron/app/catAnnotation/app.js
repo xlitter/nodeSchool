@@ -4,13 +4,9 @@ const electron = require('electron');
 const app = electron.app;
 
 app.on('ready', () => {
-  const mainWin = new electron.BrowserWindow({ width: 700, height: 900 });
+  const mainWin = new electron.BrowserWindow();
   mainWin.loadURL(`file://${__dirname}/index.html`);
 
   mainWin.openDevTools();
-
-  mainWin.on('close', () => {
-    console.log('close main window');
-  });
-
 });
+

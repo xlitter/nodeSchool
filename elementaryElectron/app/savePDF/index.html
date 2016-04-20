@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>save pdf</title>
+</head>
+
+<body>
+  <h1>this is pdf save index</h1>
+  <script>
+    (()=>{
+      'use strict';
+      const fs = require('fs');
+      const remote = require('remote');
+      const webContents = remote.getCurrentWindow().webContents;
+      
+      function save(){
+        webContents.printToPDF({}, (error, data)=>{
+          fs.writeFile('annotation.pdf', data, (err)=>{
+            if(err){
+              console.log('error');
+              return;
+            }
+            
+            console.log('save pdf ok!');
+          })
+        });
+      }
+      window.addEventListener('keyup',e=>{
+        if(e.keyCode === 80){
+          save();
+        }
+      }, false);
+    })();
+  </script>
+</body>
+
+</html>
